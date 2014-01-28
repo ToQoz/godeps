@@ -1,0 +1,17 @@
+digraph "go-deps-of-github.com/ToQoz/go-deps" {
+    size=13.0;
+    "github.com/ToQoz/go-deps" -> "bytes";
+    "github.com/ToQoz/go-deps" -> "flag";
+    "github.com/ToQoz/go-deps" -> "fmt";
+    "github.com/ToQoz/go-deps" -> "github.com/ToQoz/go-deps/deps"[color=red];
+    "github.com/ToQoz/go-deps/deps" -> "fmt";
+    "github.com/ToQoz/go-deps/deps" -> "go/build";
+    "github.com/ToQoz/go-deps/deps" -> "io/ioutil";
+    "github.com/ToQoz/go-deps/deps" -> "os";
+    "github.com/ToQoz/go-deps/deps" -> "path/filepath";
+    "github.com/ToQoz/go-deps/deps" -> "regexp";
+    "github.com/ToQoz/go-deps/deps" -> "strings";
+    "github.com/ToQoz/go-deps" -> "os";
+    "github.com/ToQoz/go-deps" -> "path/filepath";
+    "github.com/ToQoz/go-deps" -> "strings";
+}
