@@ -10,12 +10,24 @@ import (
 	"strings"
 )
 
-func main() {
-	verboseFlag := flag.Bool("v", false, "verbose flag.")
+func usage() {
+	banner := "usage: deps [flags] [packages(default=.)]\n"
 
-	trackingModeFlag := flag.Int("tracking-mode", 1, `0 = track only deps that depth is 1
-1 = stop tracing when godeps reach standard package
-2 = track recursively`)
+	fmt.Fprintf(os.Stderr, banner)
+	flag.PrintDefaults()
+	fmt.Fprintf(os.Stderr, "\n")
+	os.Exit(1)
+}
+
+func main() {
+	flag.Usage = usage
+
+	verboseFlag := flag.Bool("v", false, "verbose")
+
+	trackingModeFlag := flag.Int("tracking-mode", 1, `
+	0 = track only deps that depth is 1
+	1 = stop tracking when godeps reach standard package
+	2 = track recursively`)
 
 	flag.Parse()
 

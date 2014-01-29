@@ -155,7 +155,7 @@ func (p *Package) Deps(stack []*Dep, trackingMode int) (deps []*Dep) {
 		case StopTracingOnReachingLeaf:
 			skipSubDeps = false
 		default:
-			panic(fmt.Sprintf("Unknown tracing-mode. %s\n", trackingMode))
+			panic(fmt.Sprintf("Unknown tracking-mode. %s\n", trackingMode))
 		}
 
 		if skipSubDeps {
