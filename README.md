@@ -1,5 +1,7 @@
 # godeps
 
+[![Build Status](https://travis-ci.org/ToQoz/godeps.png?branch=master)](https://travis-ci.org/ToQoz/godeps)
+
 github.com/ToQoz/godeps reveal go pkg dependencies.
 
     $ cd a-go-pkg

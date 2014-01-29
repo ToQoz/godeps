@@ -1,0 +1,12 @@
+language: go
+go:
+  - 1.1
+  - 1.2
+  - tip
+script: go build -v ./... && go test -v ./...
+notifications:
+  email:
+    recipients:
+      - toqoz403@gmail.com
+    on_success: change
+    on_failure: always
