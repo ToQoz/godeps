@@ -47,7 +47,7 @@ func main() {
 	pkgs := deps.Packages(dir)
 
 	if pkgs == nil {
-		fmt.Fprintln(os.Stderr, "ERROR: package not found")
+		fmt.Fprintln(os.Stderr, "ERROR: package not found in %s", dir)
 		os.Exit(1)
 	}
 
