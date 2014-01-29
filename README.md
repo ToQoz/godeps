@@ -17,3 +17,8 @@ You can embed to your project's README like this.
 ## TODO
 
 godoc like web version. And it provide badge like travis-ci.
+
+## See also
+
+- http://golang.org/pkg/go/build/
+- http://golang.org/cmd/go/#hdr-List_packages
