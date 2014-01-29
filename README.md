@@ -18,6 +18,12 @@ You can embed to your project's README like this.
 
 godoc like web version. And it provide badge like travis-ci.
 
+## By the way
+
+If you simply want to know imported pkgs. You can do by excuting `go list -f {{.Imports}}` or `go list -f {{.Deps}}`
+
+`go list -f {{.Deps}}` gets pkgs recursively.
+
 ## See also
 
 - http://golang.org/pkg/go/build/
