@@ -1,4 +1,4 @@
-package deps
+package godeps
 
 import (
 	"fmt"

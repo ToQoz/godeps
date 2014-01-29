@@ -4,14 +4,14 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"github.com/ToQoz/godeps/deps"
+	"github.com/ToQoz/godeps/godeps"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
 func usage() {
-	banner := "usage: deps [flags] [packages(default=.)]\n"
+	banner := "usage: godeps [flags] [packages(default=.)]\n"
 
 	fmt.Fprintf(os.Stderr, banner)
 	flag.PrintDefaults()
@@ -31,15 +31,15 @@ func main() {
 
 	flag.Parse()
 
-	deps.Verbose(*verboseFlag)
+	godeps.Verbose(*verboseFlag)
 
 	var trackingMode int
 
 	switch *trackingModeFlag {
-	case deps.StopTracingOnReachingTopLevelDeps, deps.StopTracingOnReachingStandardPackageOrLeaf, deps.StopTracingOnReachingLeaf:
+	case godeps.StopTracingOnReachingTopLevelDeps, godeps.StopTracingOnReachingStandardPackageOrLeaf, godeps.StopTracingOnReachingLeaf:
 		trackingMode = *trackingModeFlag
 	default:
-		trackingMode = deps.StopTracingOnReachingStandardPackageOrLeaf
+		trackingMode = godeps.StopTracingOnReachingStandardPackageOrLeaf
 	}
 
 	dir := flag.Arg(0)
@@ -56,7 +56,7 @@ func main() {
 		dir = filepath.Join(wd, dir)
 	}
 
-	pkgs := deps.Packages(dir)
+	pkgs := godeps.Packages(dir)
 
 	if pkgs == nil {
 		fmt.Fprintln(os.Stderr, "ERROR: package not found in %s", dir)
