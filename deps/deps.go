@@ -12,15 +12,16 @@ import (
 
 var (
 	verbose = false
-	deep    = false
+)
+
+const (
+	StopTracingOnReachingTopLevelDeps = iota
+	StopTracingOnReachingStandardPackageOrLeaf
+	StopTracingOnReachingLeaf
 )
 
 func Verbose(v bool) {
 	verbose = v
-}
-
-func Deep(v bool) {
-	deep = v
 }
 
 func Packages(_pattern string) []*Package {
@@ -125,7 +126,7 @@ type Dep struct {
 	To   *Package
 }
 
-func (p *Package) Deps(stack []*Dep) (deps []*Dep) {
+func (p *Package) Deps(stack []*Dep, trackingMode int) (deps []*Dep) {
 	deps = stack
 
 	depImportPaths, err := p.DepImportPaths()
@@ -144,15 +145,30 @@ func (p *Package) Deps(stack []*Dep) (deps []*Dep) {
 
 		deps = append(deps, dep)
 
-		if deep || !depPkg.StandardPkg() {
-			// Skip if already registered.
-			for _, depDep := range depPkg.Deps(deps) {
-				if containsDep(deps, depDep) {
-					continue
-				}
+		skipSubDeps := false
 
-				deps = append(deps, depDep)
+		switch trackingMode {
+		case StopTracingOnReachingTopLevelDeps:
+			skipSubDeps = true
+		case StopTracingOnReachingStandardPackageOrLeaf:
+			skipSubDeps = depPkg.StandardPkg()
+		case StopTracingOnReachingLeaf:
+			skipSubDeps = false
+		default:
+			panic(fmt.Sprintf("Unknown tracing-mode. %s\n", trackingMode))
+		}
+
+		if skipSubDeps {
+			continue
+		}
+
+		// Skip if already registered.
+		for _, depDep := range depPkg.Deps(deps, trackingMode) {
+			if containsDep(deps, depDep) {
+				continue
 			}
+
+			deps = append(deps, depDep)
 		}
 	}
 

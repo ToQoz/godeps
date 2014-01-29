@@ -24,7 +24,7 @@ func TestDeps_WhenCircularReferenceExist(t *testing.T) {
 			return
 		}
 
-		deps := pkgs[0].Deps(nil)
+		deps := pkgs[0].Deps(nil, StopTracingOnReachingStandardPackageOrLeaf)
 
 		if len(deps) != 2 {
 			fmt.Printf("%q\n", deps)
@@ -44,7 +44,7 @@ func TestDeps_WhenCircularReferenceExist(t *testing.T) {
 			return
 		}
 
-		deps := pkgs[0].Deps(nil)
+		deps := pkgs[0].Deps(nil, StopTracingOnReachingStandardPackageOrLeaf)
 
 		if len(deps) != 3 {
 			fmt.Printf("%v\n", deps)

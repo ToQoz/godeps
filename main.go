@@ -12,12 +12,23 @@ import (
 
 func main() {
 	verboseFlag := flag.Bool("v", false, "verbose flag.")
-	deepFlag := flag.Bool("deep", false, "deep flag. If this is set, godeps don't stop tracing dependency even if it reach to standard package.")
+
+	trackingModeFlag := flag.Int("tracking-mode", 1, `0 = track only deps that depth is 1
+1 = stop tracing when godeps reach standard package
+2 = track recursively`)
 
 	flag.Parse()
 
 	deps.Verbose(*verboseFlag)
-	deps.Deep(*deepFlag)
+
+	var trackingMode int
+
+	switch *trackingModeFlag {
+	case deps.StopTracingOnReachingTopLevelDeps, deps.StopTracingOnReachingStandardPackageOrLeaf, deps.StopTracingOnReachingLeaf:
+		trackingMode = *trackingModeFlag
+	default:
+		trackingMode = deps.StopTracingOnReachingStandardPackageOrLeaf
+	}
 
 	dir := flag.Arg(0)
 
@@ -47,7 +58,7 @@ func main() {
 		buffer.WriteString(fmt.Sprintf(`digraph "godeps-of-%v" {`+"\n", pkg.ImportPath))
 		buffer.WriteString("    size=13.0;\n")
 
-		for _, dep := range pkg.Deps(nil) {
+		for _, dep := range pkg.Deps(nil, trackingMode) {
 			attrList := ""
 
 			if !dep.To.StandardPkg() {
