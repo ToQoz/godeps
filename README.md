@@ -11,3 +11,7 @@ You can embed to your project's README like this.
 ## godeps
 
 ![Dependencies graph](godeps.png?raw=true)
+
+## TODO
+
+godoc like web version. And it provide badge like travis-ci.
