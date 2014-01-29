@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"github.com/ToQoz/go-deps/deps"
+	"github.com/ToQoz/godeps/deps"
 	"os"
 	"path/filepath"
 	"strings"
@@ -12,7 +12,7 @@ import (
 
 func main() {
 	verboseFlag := flag.Bool("v", false, "verbose flag.")
-	deepFlag := flag.Bool("deep", false, "deep flag. If this is set, go-deps don't stop tracing dependency even if it reach to standard package.")
+	deepFlag := flag.Bool("deep", false, "deep flag. If this is set, godeps don't stop tracing dependency even if it reach to standard package.")
 
 	flag.Parse()
 
@@ -44,7 +44,7 @@ func main() {
 		buf := []byte{}
 		buffer := bytes.NewBuffer(buf)
 
-		buffer.WriteString(fmt.Sprintf(`digraph "go-deps-of-%v" {`+"\n", pkg.ImportPath))
+		buffer.WriteString(fmt.Sprintf(`digraph "godeps-of-%v" {`+"\n", pkg.ImportPath))
 		buffer.WriteString("    size=13.0;\n")
 
 		for _, dep := range pkg.Deps(nil) {
@@ -60,7 +60,7 @@ func main() {
 		buffer.WriteString("}\n")
 
 		// truncating it if it already exists
-		f, err := os.Create(filepath.Join(pkg.FilePath, "go-deps.dot"))
+		f, err := os.Create(filepath.Join(pkg.FilePath, "godeps.dot"))
 
 		if err != nil {
 			panic(err)

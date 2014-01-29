@@ -1,5 +1,5 @@
 package b
 
 import (
-	_ "github.com/ToQoz/go-deps/deps/testdata/circularref"
+	_ "github.com/ToQoz/godeps/deps/testdata/circularref"
 )

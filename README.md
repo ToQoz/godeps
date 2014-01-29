@@ -1,13 +1,13 @@
-# go-deps
+# godeps
 
-github.com/ToQoz/go-deps reveal go pkg dependencies.
+github.com/ToQoz/godeps reveal go pkg dependencies.
 
     $ cd a-go-pkg
-    $ go-deps .
-    $ dot -Tpng go-deps.dot -o go-deps.png
+    $ godeps .
+    $ dot -Tpng godeps.dot -o godeps.png
 
 You can embed to your project's README like this.
 
-## go-deps
+## godeps
 
-![Dependencies graph](go-deps.png?raw=true)
+![Dependencies graph](godeps.png?raw=true)

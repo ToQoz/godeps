@@ -1,17 +1,17 @@
-digraph "go-deps-of-github.com/ToQoz/go-deps" {
+digraph "godeps-of-github.com/ToQoz/godeps" {
     size=13.0;
-    "github.com/ToQoz/go-deps" -> "bytes";
-    "github.com/ToQoz/go-deps" -> "flag";
-    "github.com/ToQoz/go-deps" -> "fmt";
-    "github.com/ToQoz/go-deps" -> "github.com/ToQoz/go-deps/deps"[color=red];
-    "github.com/ToQoz/go-deps/deps" -> "fmt";
-    "github.com/ToQoz/go-deps/deps" -> "go/build";
-    "github.com/ToQoz/go-deps/deps" -> "io/ioutil";
-    "github.com/ToQoz/go-deps/deps" -> "os";
-    "github.com/ToQoz/go-deps/deps" -> "path/filepath";
-    "github.com/ToQoz/go-deps/deps" -> "regexp";
-    "github.com/ToQoz/go-deps/deps" -> "strings";
-    "github.com/ToQoz/go-deps" -> "os";
-    "github.com/ToQoz/go-deps" -> "path/filepath";
-    "github.com/ToQoz/go-deps" -> "strings";
+    "github.com/ToQoz/godeps" -> "bytes";
+    "github.com/ToQoz/godeps" -> "flag";
+    "github.com/ToQoz/godeps" -> "fmt";
+    "github.com/ToQoz/godeps" -> "github.com/ToQoz/godeps/deps"[color=red];
+    "github.com/ToQoz/godeps/deps" -> "fmt";
+    "github.com/ToQoz/godeps/deps" -> "go/build";
+    "github.com/ToQoz/godeps/deps" -> "io/ioutil";
+    "github.com/ToQoz/godeps/deps" -> "os";
+    "github.com/ToQoz/godeps/deps" -> "path/filepath";
+    "github.com/ToQoz/godeps/deps" -> "regexp";
+    "github.com/ToQoz/godeps/deps" -> "strings";
+    "github.com/ToQoz/godeps" -> "os";
+    "github.com/ToQoz/godeps" -> "path/filepath";
+    "github.com/ToQoz/godeps" -> "strings";
 }
