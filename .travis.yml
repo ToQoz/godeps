@@ -3,7 +3,14 @@ go:
   - 1.1
   - 1.2
   - tip
-script: go build -v ./... && go test -v ./...
+before_install:
+  - go get github.com/axw/gocov/gocov
+  - go get github.com/mattn/goveralls
+  - go get code.google.com/p/go.tools/cmd/cover
+script:
+  - go build -v ./...
+  - go test -v ./...
+  - $HOME/gopath/bin/goveralls HKd1xqMsHvFxNA7LjuK6iZFYlBQoyFTxw
 notifications:
   email:
     recipients:
